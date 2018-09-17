@@ -7,14 +7,15 @@ class Application(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        self.hi_there = tk.Button(self)
-        self.hi_there["text"] = "Hello World\n(click me)"
-        self.hi_there["command"] = self.say_hi
-        self.hi_there.pack(side="top")
+        图片1 = tk.PhotoImage(file="images/test1.png")
+        self.图片显示1 = tk.Label(self, image=图片1) #side="top"
+        self.图片显示1.image = 图片1
+        self.图片显示1.pack()
 
-        self.quit = tk.Button(self, text="QUIT", fg="red",
-                              command=root.destroy)
-        self.quit.pack(side="bottom")
+        图片2 = tk.PhotoImage(file="images/test2.png")
+        self.图片显示2 = tk.Label(self, image=图片2) #side="top"
+        self.图片显示2.image = 图片2
+        self.图片显示2.pack()
 
     def say_hi(self):
         print("hi there, everyone!")
