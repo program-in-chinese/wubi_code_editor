@@ -49,8 +49,7 @@ class Application(Frame):
         try:
             图片 = PhotoImage(file=图片路径)
         except:
-            print("找不到图片")
-            图片 = PhotoImage()
+            图片 = PhotoImage(file=常量.无字体图片)
         图片显示 = Label(字体区, image=图片)
         图片显示.image = 图片
         图片显示.pack()
@@ -87,7 +86,7 @@ class Application(Frame):
     # 0Fxxxx 	Plane15
     # 10xxxx 	Plane16
     # 文件名格式统一为 U_xxxxxx.png （ xxxxxx 为 6 位 Unicode 编码，不足 6 位则前面补 0 ）
-    # TODO: 简化代码
+    # TODO: 简化代码, 提取到功用
     def 组成图片子路径(self, Unicode码):
         Plane值 = "00"
         if (len(Unicode码) == 5):
@@ -105,8 +104,6 @@ class Application(Frame):
         return "Plane" + Plane值 + "/U_" + 大写Unicode码 + 常量.图片扩展名
 
     def 创建控件(self):
-        #self.当前字符序号 = 0
-        #self.字符列表 = []
         self.按字体取图片显示 = {}
 
         for 文件名 in 常量.源数据文件:
@@ -163,6 +160,7 @@ class Application(Frame):
     # 支持大小写
     # TODO: 避免线性查找
     # TODO: 支持按字搜索
+    # TODO: 提取到功用
     def 搜索Unicode(self):
         Unicode值输入 = self.搜索Unicode值.get().upper()
         字符序号 = -1
@@ -182,7 +180,7 @@ class Application(Frame):
         try:
             图片 = PhotoImage(file=常量.图片主目录 + 常量.图片路径[字体名] + self.图片子路径)
         except:
-            图片 = PhotoImage()
+            图片 = PhotoImage(file=常量.无字体图片)
         图片显示.configure(image=图片)
         图片显示.image = 图片
 
