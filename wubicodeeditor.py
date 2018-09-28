@@ -1,5 +1,7 @@
-from tkinter import *
 import csv
+from tkinter import *
+
+from 功用.csv文件处理 import csv文件处理
 
 常量_源数据路径 = "UnicodeCJK-Wubi/"
 常量_源数据文件 = ["CJK-A.txt", "CJK-B.txt", "CJK-C.txt", "CJK-D.txt", "CJK-E.txt", "CJK-F.txt", "CJK.txt"]
@@ -42,11 +44,7 @@ class Application(Frame):
         print("已修改: " + str(self.当前字符))
 
     def 导出文件(self):
-        with open(常量_修改后文件, 'w', newline='') as 目标文件:
-            写文件 = csv.writer(目标文件, delimiter=',')
-            for 字符 in self.字符列表:
-                写文件.writerow(字符)
-        print("修改保存到: " + 常量_修改后文件)
+        csv文件处理.写数组到文件(self.字符列表, 常量_修改后文件)
 
     # TODO: 提示已到开头/末尾
     def 上一个字符(self):
@@ -138,20 +136,13 @@ class Application(Frame):
         大写Unicode码 = "0" * 补0数 + Unicode码.upper()
         return "Plane" + Plane值 + "/U_" + 大写Unicode码 + 常量_图片扩展名
 
-    def 读入源数据文件(self, 文件名):
-        # 官方文档参考: https://docs.python.org/3/library/csv.html#module-contents
-        with open(文件名, newline='') as 源数据文件:
-            源数据读取器 = csv.reader(源数据文件, delimiter=',')
-            for 行 in 源数据读取器:
-                self.字符列表.append(行)
-
     def 创建控件(self):
         self.当前字符序号 = 0
         self.字符列表 = []
         self.按字体取图片显示 = {}
 
         for 文件名 in 常量_源数据文件:
-            self.读入源数据文件(常量_源数据路径 + 文件名)
+            self.字符列表.extend(csv文件处理.读文件到数组(常量_源数据路径 + 文件名))
 
         self.当前字符 = self.字符列表[self.当前字符序号]
         self.图片子路径 = self.组成图片子路径(self.当前字符[0])
