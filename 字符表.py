@@ -31,3 +31,18 @@ class 字符表:
 
     def 取所有字符(self):
         return self.字符列表
+
+    # 如找到, 返回True; 否则返回False
+    # 测试用: 3400 - A第一个, 20000 -B第一个
+    # 支持大小写
+    # TODO: 避免线性查找
+    # TODO: 支持按字搜索
+    def 按Unicode码置当前字符(self, unicode码):
+        Unicode值输入 = unicode码.upper()
+        字符序号 = -1
+        for 字符 in self.字符列表:
+            字符序号 += 1
+            if (Unicode值输入 == 字符[0]):
+                self.置当前字符序号(字符序号)
+                return True
+        return False

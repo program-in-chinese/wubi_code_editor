@@ -2,8 +2,10 @@ import csv
 import 常量
 import 字符表
 from tkinter import *
+from functools import partial
 
 from 功用.csv文件处理 import csv文件处理
+from 功用.功能 import *
 
 class Application(Frame):
     def __init__(self, master=None):
@@ -77,31 +79,8 @@ class Application(Frame):
         显示.pack(side = "right")
         return 可变值
 
-    # Unicode编码->Plane号
-    # 00xxxx 	Plane00
-    # 01xxxx 	Plane01
-    # 02xxxx 	Plane02
-    # 03xxxx 	Plane03
-    # 0Exxxx 	Plane14
-    # 0Fxxxx 	Plane15
-    # 10xxxx 	Plane16
-    # 文件名格式统一为 U_xxxxxx.png （ xxxxxx 为 6 位 Unicode 编码，不足 6 位则前面补 0 ）
-    # TODO: 简化代码, 提取到功用
     def 组成图片子路径(self, Unicode码):
-        Plane值 = "00"
-        if (len(Unicode码) == 5):
-            Plane值 = "0" + Unicode码[0]
-        elif (len(Unicode码) == 6):
-            前两位 = Unicode码[0:1]
-            if 前两位 == '0E':
-                Plane值 = "14"
-            elif 前两位 == '0F':
-                Plane值 = "15"
-            elif 前两位 == '10':
-                Plane值 = "16"
-        补0数 = 6 - len(Unicode码)
-        大写Unicode码 = "0" * 补0数 + Unicode码.upper()
-        return "Plane" + Plane值 + "/U_" + 大写Unicode码 + 常量.图片扩展名
+        return 功能.组成图片子路径(Unicode码) + 常量.图片扩展名
 
     def 创建控件(self):
         self.按字体取图片显示 = {}
@@ -115,9 +94,8 @@ class Application(Frame):
         图片区 = Frame(self)
         图片区.pack(side = "left")
 
-        self.创建字体区(图片区, "中国大陆")
-        self.创建字体区(图片区, "中国台港澳")
-        self.创建字体区(图片区, "日本")
+        for 地区名 in 常量.按地区名取字体列表.keys():
+            self.创建字体区(图片区, 地区名)
 
         细节区 = Frame(self)
         细节区.pack(side = "right")
@@ -146,35 +124,21 @@ class Application(Frame):
 
         搜索区 = Frame(细节区)
         搜索区.pack()
-        self.搜索Unicode值 = StringVar(value="")
-        Unicode值输入 = Entry(搜索区, textvariable=self.搜索Unicode值)
+        搜索Unicode值 = StringVar(value="")
+        Unicode值输入 = Entry(搜索区, textvariable=搜索Unicode值)
         Unicode值输入.pack(side = "left")
 
-        搜索Unicode = Button(搜索区, text = "搜索Unicode", command = self.搜索Unicode)
+        搜索Unicode = Button(搜索区, text = "搜索Unicode", command = lambda: self.搜索Unicode(搜索Unicode值.get()))
         搜索Unicode.pack(side = "right")
 
         导出按钮 = Button(细节区, text = "导出文件", command = self.导出文件)
         导出按钮.pack()
 
-    # 测试用: 3400 - A第一个, 20000 -B第一个
-    # 支持大小写
-    # TODO: 避免线性查找
-    # TODO: 支持按字搜索
-    # TODO: 提取到功用
-    def 搜索Unicode(self):
-        Unicode值输入 = self.搜索Unicode值.get().upper()
-        字符序号 = -1
-        已查到 = False
-        for 字符 in self.字符表.取所有字符():
-            字符序号 += 1
-            if (Unicode值输入 == 字符[0]):
-                已查到 = True
-                break
-        if 已查到:
-            self.字符表.置当前字符序号(字符序号)
+    def 搜索Unicode(self, Unicode值输入):
+        if self.字符表.按Unicode码置当前字符(Unicode值输入):
             self.刷新控件()
         else:
-          print("未找到Unicode码: " + Unicode值输入)
+            print("未找到Unicode码: " + Unicode值输入)
 
     def 刷新图片显示(self, 图片显示, 字体名):
         try:
