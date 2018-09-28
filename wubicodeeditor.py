@@ -39,19 +39,13 @@ class Application(Frame):
         for 字体 in 常量.按地区名取字体列表[地区名]:
             self.按字体取图片显示[字体] = self.创建图片显示(字体显示, 字体, "left")
 
-    # TODO: 如图片不存在, 不应抛错
     # 显示图片, 参考: https://stackoverflow.com/questions/35024118/how-to-load-an-image-into-a-python-3-4-tkinter-window
     def 创建图片显示(self, 区域, 字体名, 位置):
         字体区 = Frame(区域)
         字体区.pack(side = 位置)
         字体提示 = Label(字体区, text = 字体名)
         字体提示.pack()
-        图片路径 = 常量.图片主目录 + 常量.图片路径[字体名] + self.图片子路径
-        print(图片路径)
-        try:
-            图片 = PhotoImage(file=图片路径)
-        except:
-            图片 = PhotoImage(file=常量.无字体图片)
+        图片 = self.按字体取图片(字体名)
         图片显示 = Label(字体区, image=图片)
         图片显示.image = 图片
         图片显示.pack()
@@ -89,7 +83,6 @@ class Application(Frame):
             self.字符表.添加所有字符(csv文件处理.读文件到数组(常量.源数据路径 + 文件名))
 
         当前字符 = self.字符表.取当前字符()
-        self.图片子路径 = self.组成图片子路径(当前字符[0])
 
         图片区 = Frame(self)
         图片区.pack(side = "left")
@@ -141,17 +134,19 @@ class Application(Frame):
             print("未找到Unicode码: " + Unicode值输入)
 
     def 刷新图片显示(self, 图片显示, 字体名):
-        try:
-            图片 = PhotoImage(file=常量.图片主目录 + 常量.图片路径[字体名] + self.图片子路径)
-        except:
-            图片 = PhotoImage(file=常量.无字体图片)
+        图片 = self.按字体取图片(字体名)
         图片显示.configure(image=图片)
         图片显示.image = 图片
+
+    def 按字体取图片(self, 字体名):
+        try:
+            return PhotoImage(file=常量.图片主目录 + 常量.图片路径[字体名] + self.组成图片子路径(self.字符表.取当前字符()[0]))
+        except:
+            return PhotoImage(file=常量.无字体图片)
 
     def 刷新控件(self):
         当前字符 = self.字符表.取当前字符()
         print("当前字符: " + str(当前字符))
-        self.图片子路径 = self.组成图片子路径(当前字符[0])
         
         for 字体 in 常量.图片路径.keys():
           self.刷新图片显示(self.按字体取图片显示[字体], 字体)
