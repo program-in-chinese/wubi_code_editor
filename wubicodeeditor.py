@@ -38,7 +38,7 @@ class Application(Frame):
     def 修改当前条目(self):
         self.当前字符[2] = self.编码86版值.get()
         self.当前字符[3] = self.编码98版值.get()
-        # TODO: 置06版值
+        self.当前字符[4] = self.编码06版值.get()
         print("已修改: " + str(self.当前字符))
 
     def 导出文件(self):
@@ -167,8 +167,7 @@ class Application(Frame):
         细节区.pack(side = "right")
         self.Unicode编码值 = self.创建只读区(细节区, "Unicode编码", self.当前字符[0])
 
-        # TODO: 读取实际数据
-        self.笔顺值 = self.创建只读区(细节区, "笔顺", 常量_无)
+        self.笔顺值 = self.创建只读区(细节区, "笔顺", self.当前字符[5])
 
         修改区 = Frame(细节区)
         修改区.pack()
@@ -176,7 +175,7 @@ class Application(Frame):
         可改编码区.pack(side = "left")
         self.编码86版值 = self.创建五笔编码编辑区(可改编码区, "86", self.当前字符[2])
         self.编码98版值 = self.创建五笔编码编辑区(可改编码区, "98", self.当前字符[3])
-        self.编码06版值 = self.创建五笔编码编辑区(可改编码区, "06", 常量_无)
+        self.编码06版值 = self.创建五笔编码编辑区(可改编码区, "06", self.当前字符[4])
 
         修改按钮 = Button(修改区, text = "修改", command = self.修改当前条目)
         修改按钮.pack(side = "right")
@@ -237,12 +236,10 @@ class Application(Frame):
           self.刷新图片显示(self.按字体取图片显示[字体], 字体)
 
         self.Unicode编码值.set(self.当前字符[0])
-
-        # 4DB6 无五笔码
         self.编码86版值.set(self.当前字符[2])
         self.编码98版值.set(self.当前字符[3])
-        self.编码06版值.set(常量_无)
-        self.笔顺值.set(常量_无)
+        self.编码06版值.set(self.当前字符[4])
+        self.笔顺值.set(self.当前字符[5])
 
 root = Tk()
 app = Application(master=root)
