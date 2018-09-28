@@ -1,35 +1,8 @@
 import csv
+import 常量
 from tkinter import *
 
 from 功用.csv文件处理 import csv文件处理
-
-常量_源数据路径 = "UnicodeCJK-Wubi/"
-常量_源数据文件 = ["CJK-A.txt", "CJK-B.txt", "CJK-C.txt", "CJK-D.txt", "CJK-E.txt", "CJK-F.txt", "CJK.txt"]
-# 暂时只指出导出到一个文件
-常量_修改后文件 = "CJK-所有.txt"
-
-# TODO: 支持windows路径
-常量_图片主目录 = "UnicodeCJK-FontGlyphs/"
-常量_图片路径 = {
-  "中易宋体": "SimSun/",
-  "中华书局宋体": "ZhongHuaSong/",
-  "汉仪字典宋": "HYZiDianSong/",
-  "汉仪仿宋": "HYFangSong/",
-  "方正楷体S": "FZKaiS/",
-  "细明体": "MingLiU/",
-  "细明体_HKSCS": "MingLiU_HKSCS/",
-  "方正楷体T": "FZKaiT/",
-  "花园明朝": "HanaMin/",
-}
-
-常量_大陆字体列表 = ["中易宋体", "中华书局宋体", "汉仪字典宋", "汉仪仿宋", "方正楷体S"]
-常量_台港澳字体列表 = ["细明体", "细明体_HKSCS", "方正楷体T"]
-常量_日本字体列表 = ["花园明朝"]
-常量_按地区名取字体列表 = {"中国大陆": 常量_大陆字体列表, "中国台港澳": 常量_台港澳字体列表, "日本": 常量_日本字体列表}
-
-常量_图片扩展名 = ".png"
-
-常量_无 = "无"
 
 class Application(Frame):
     def __init__(self, master=None):
@@ -44,7 +17,7 @@ class Application(Frame):
         print("已修改: " + str(self.当前字符))
 
     def 导出文件(self):
-        csv文件处理.写数组到文件(self.字符列表, 常量_修改后文件)
+        csv文件处理.写数组到文件(self.字符列表, 常量.修改后文件)
 
     # TODO: 提示已到开头/末尾
     def 上一个字符(self):
@@ -66,7 +39,7 @@ class Application(Frame):
         字体区提示.pack()
         字体显示 = Frame(字体区)
         字体显示.pack()
-        for 字体 in 常量_按地区名取字体列表[地区名]:
+        for 字体 in 常量.按地区名取字体列表[地区名]:
             self.按字体取图片显示[字体] = self.创建图片显示(字体显示, 字体, "left")
 
     # TODO: 如图片不存在, 不应抛错
@@ -76,7 +49,7 @@ class Application(Frame):
         字体区.pack(side = 位置)
         字体提示 = Label(字体区, text = 字体名)
         字体提示.pack()
-        图片路径 = 常量_图片主目录 + 常量_图片路径[字体名] + self.图片子路径
+        图片路径 = 常量.图片主目录 + 常量.图片路径[字体名] + self.图片子路径
         print(图片路径)
         try:
             图片 = PhotoImage(file=图片路径)
@@ -134,15 +107,15 @@ class Application(Frame):
                 Plane值 = "16"
         补0数 = 6 - len(Unicode码)
         大写Unicode码 = "0" * 补0数 + Unicode码.upper()
-        return "Plane" + Plane值 + "/U_" + 大写Unicode码 + 常量_图片扩展名
+        return "Plane" + Plane值 + "/U_" + 大写Unicode码 + 常量.图片扩展名
 
     def 创建控件(self):
         self.当前字符序号 = 0
         self.字符列表 = []
         self.按字体取图片显示 = {}
 
-        for 文件名 in 常量_源数据文件:
-            self.字符列表.extend(csv文件处理.读文件到数组(常量_源数据路径 + 文件名))
+        for 文件名 in 常量.源数据文件:
+            self.字符列表.extend(csv文件处理.读文件到数组(常量.源数据路径 + 文件名))
 
         self.当前字符 = self.字符列表[self.当前字符序号]
         self.图片子路径 = self.组成图片子路径(self.当前字符[0])
@@ -212,7 +185,7 @@ class Application(Frame):
 
     def 刷新图片显示(self, 图片显示, 字体名):
         try:
-            图片 = PhotoImage(file=常量_图片主目录 + 常量_图片路径[字体名] + self.图片子路径)
+            图片 = PhotoImage(file=常量.图片主目录 + 常量.图片路径[字体名] + self.图片子路径)
         except:
             图片 = PhotoImage()
         图片显示.configure(image=图片)
@@ -223,7 +196,7 @@ class Application(Frame):
         print("当前字符: " + str(self.当前字符))
         self.图片子路径 = self.组成图片子路径(self.当前字符[0])
         
-        for 字体 in 常量_图片路径.keys():
+        for 字体 in 常量.图片路径.keys():
           self.刷新图片显示(self.按字体取图片显示[字体], 字体)
 
         self.Unicode编码值.set(self.当前字符[0])
