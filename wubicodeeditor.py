@@ -1,5 +1,6 @@
 import csv
 import 常量
+import 字符表
 from tkinter import *
 
 from 功用.csv文件处理 import csv文件处理
@@ -8,28 +9,22 @@ class Application(Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.pack()
+        self.字符表 = 字符表.字符表()
         self.创建控件()
 
     def 修改当前条目(self):
-        self.当前字符[2] = self.编码86版值.get()
-        self.当前字符[3] = self.编码98版值.get()
-        self.当前字符[4] = self.编码06版值.get()
-        print("已修改: " + str(self.当前字符))
+        self.字符表.修改当前字符(self.编码86版值.get(), self.编码98版值.get(), self.编码06版值.get())
 
     def 导出文件(self):
-        csv文件处理.写数组到文件(self.字符列表, 常量.修改后文件)
+        csv文件处理.写数组到文件(self.字符表.取所有字符(), 常量.修改后文件)
 
     # TODO: 提示已到开头/末尾
     def 上一个字符(self):
-        if (self.当前字符序号 > 0):
-            self.当前字符序号 -= 1
-        print("字符序号: " + str(self.当前字符序号))
+        self.字符表.取上一个字符()
         self.刷新控件()
 
     def 下一个字符(self):
-        if (self.当前字符序号 < len(self.字符列表)):
-          self.当前字符序号 += 1
-        print("字符序号: " + str(self.当前字符序号))
+        self.字符表.取下一个字符()
         self.刷新控件()
 
     def 创建字体区(self, 区域, 地区名):
@@ -110,15 +105,15 @@ class Application(Frame):
         return "Plane" + Plane值 + "/U_" + 大写Unicode码 + 常量.图片扩展名
 
     def 创建控件(self):
-        self.当前字符序号 = 0
-        self.字符列表 = []
+        #self.当前字符序号 = 0
+        #self.字符列表 = []
         self.按字体取图片显示 = {}
 
         for 文件名 in 常量.源数据文件:
-            self.字符列表.extend(csv文件处理.读文件到数组(常量.源数据路径 + 文件名))
+            self.字符表.添加所有字符(csv文件处理.读文件到数组(常量.源数据路径 + 文件名))
 
-        self.当前字符 = self.字符列表[self.当前字符序号]
-        self.图片子路径 = self.组成图片子路径(self.当前字符[0])
+        当前字符 = self.字符表.取当前字符()
+        self.图片子路径 = self.组成图片子路径(当前字符[0])
 
         图片区 = Frame(self)
         图片区.pack(side = "left")
@@ -129,17 +124,17 @@ class Application(Frame):
 
         细节区 = Frame(self)
         细节区.pack(side = "right")
-        self.Unicode编码值 = self.创建只读区(细节区, "Unicode编码", self.当前字符[0])
+        self.Unicode编码值 = self.创建只读区(细节区, "Unicode编码", 当前字符[0])
 
-        self.笔顺值 = self.创建只读区(细节区, "笔顺", self.当前字符[5])
+        self.笔顺值 = self.创建只读区(细节区, "笔顺", 当前字符[5])
 
         修改区 = Frame(细节区)
         修改区.pack()
         可改编码区 = Frame(修改区)
         可改编码区.pack(side = "left")
-        self.编码86版值 = self.创建五笔编码编辑区(可改编码区, "86", self.当前字符[2])
-        self.编码98版值 = self.创建五笔编码编辑区(可改编码区, "98", self.当前字符[3])
-        self.编码06版值 = self.创建五笔编码编辑区(可改编码区, "06", self.当前字符[4])
+        self.编码86版值 = self.创建五笔编码编辑区(可改编码区, "86", 当前字符[2])
+        self.编码98版值 = self.创建五笔编码编辑区(可改编码区, "98", 当前字符[3])
+        self.编码06版值 = self.创建五笔编码编辑区(可改编码区, "06", 当前字符[4])
 
         修改按钮 = Button(修改区, text = "修改", command = self.修改当前条目)
         修改按钮.pack(side = "right")
@@ -172,14 +167,14 @@ class Application(Frame):
         Unicode值输入 = self.搜索Unicode值.get().upper()
         字符序号 = -1
         已查到 = False
-        for 字符 in self.字符列表:
+        for 字符 in self.字符表.取所有字符():
             字符序号 += 1
             if (Unicode值输入 == 字符[0]):
                 已查到 = True
                 break
         if 已查到:
-          self.当前字符序号 = 字符序号
-          self.刷新控件()
+            self.字符表.置当前字符序号(字符序号)
+            self.刷新控件()
         else:
           print("未找到Unicode码: " + Unicode值输入)
 
@@ -192,18 +187,18 @@ class Application(Frame):
         图片显示.image = 图片
 
     def 刷新控件(self):
-        self.当前字符 = self.字符列表[self.当前字符序号]
-        print("当前字符: " + str(self.当前字符))
-        self.图片子路径 = self.组成图片子路径(self.当前字符[0])
+        当前字符 = self.字符表.取当前字符()
+        print("当前字符: " + str(当前字符))
+        self.图片子路径 = self.组成图片子路径(当前字符[0])
         
         for 字体 in 常量.图片路径.keys():
           self.刷新图片显示(self.按字体取图片显示[字体], 字体)
 
-        self.Unicode编码值.set(self.当前字符[0])
-        self.编码86版值.set(self.当前字符[2])
-        self.编码98版值.set(self.当前字符[3])
-        self.编码06版值.set(self.当前字符[4])
-        self.笔顺值.set(self.当前字符[5])
+        self.Unicode编码值.set(当前字符[0])
+        self.编码86版值.set(当前字符[2])
+        self.编码98版值.set(当前字符[3])
+        self.编码06版值.set(当前字符[4])
+        self.笔顺值.set(当前字符[5])
 
 root = Tk()
 app = Application(master=root)
