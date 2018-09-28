@@ -43,7 +43,7 @@ class Application(Frame):
 
     def 导出文件(self):
         with open(常量_修改后文件, 'w', newline='') as 目标文件:
-            写文件 = csv.writer(目标文件, delimiter='\t')
+            写文件 = csv.writer(目标文件, delimiter=',')
             for 字符 in self.字符列表:
                 写文件.writerow(字符)
         print("修改保存到: " + 常量_修改后文件)
