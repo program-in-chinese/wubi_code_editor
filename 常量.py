@@ -49,7 +49,11 @@ from collections import OrderedDict
     ("中国台港澳", [字体名_细明体, 字体名_细明体_HKSCS, 字体名_方正楷体T]),
     ("日本", [字体名_花园明朝])])
 
-# TODO: 判断tkinter版本, 如<8.6则用.gif
-图片扩展名 = ".png"
+import tkinter
+
+if int(tkinter.TkVersion) < 8.6:
+    图片扩展名 = ".gif"
+else:
+    图片扩展名 = ".png"
 
 无 = "无"
