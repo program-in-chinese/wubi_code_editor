@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-源数据路径 = "UnicodeCJK-Wubi/"
+源数据路径 = "UnicodeCJK-WuBi/"
 
 # https://github.com/CNMan/UnicodeCJK-WuBi/pull/2#issuecomment-424330083
 # 4E00..9FFF	CJK
