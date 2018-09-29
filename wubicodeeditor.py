@@ -22,8 +22,8 @@ class Application(Frame):
         字符区间 = self.字符表.取当前字符区间()
         csv文件处理.写数组到文件(self.字符表.取所有字符()[字符区间[0]:字符区间[1]], 源数据文件路径)
 
-    def 导出文件(self):
-        csv文件处理.写数组到文件(self.字符表.取所有字符(), 常量.修改后文件)
+    #def 导出文件(self):
+    #    csv文件处理.写数组到文件(self.字符表.取所有字符(), 常量.修改后文件)
 
     # TODO: 提示已到开头/末尾
     def 上一个字符(self):
@@ -130,8 +130,8 @@ class Application(Frame):
                            command=lambda: self.搜索Unicode(搜索Unicode值.get()))
         搜索Unicode.pack(side="right")
 
-        导出按钮 = Button(细节区, text="导出文件", command=self.导出文件)
-        导出按钮.pack()
+        #导出按钮 = Button(细节区, text="导出文件", command=self.导出文件)
+        #导出按钮.pack()
 
     def 搜索Unicode(self, Unicode值输入):
         if self.字符表.按Unicode码置当前字符(Unicode值输入):
