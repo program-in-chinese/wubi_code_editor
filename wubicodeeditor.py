@@ -122,22 +122,31 @@ class Application(Frame):
 
         搜索区 = Frame(细节区)
         搜索区.pack()
-        搜索Unicode值 = StringVar(value="")
-        Unicode值输入 = Entry(搜索区, textvariable=搜索Unicode值)
-        Unicode值输入.pack(side="left")
+        搜索值 = StringVar(value="")
+        搜索输入 = Entry(搜索区, textvariable=搜索值)
+        搜索输入.pack(side="left")
 
-        搜索Unicode = Button(搜索区, text="搜索Unicode",
-                           command=lambda: self.搜索Unicode(搜索Unicode值.get()))
-        搜索Unicode.pack(side="right")
+        搜索 = Button(搜索区, text="按Unicode或字搜索",
+                           command=lambda: self.按Unicode或字搜索(搜索值.get()))
+        搜索.pack(side="right")
 
         #导出按钮 = Button(细节区, text="导出文件", command=self.导出文件)
         #导出按钮.pack()
 
-    def 搜索Unicode(self, Unicode值输入):
-        if self.字符表.按Unicode码置当前字符(Unicode值输入):
+    def 按Unicode或字搜索(self, 搜索框输入):
+        已找到 = False
+        输入为字 = len(搜索框输入) == 1
+        if (输入为字):
+            已找到 = self.字符表.按字置当前字符(搜索框输入)
+        else:
+            已找到 = self.字符表.按Unicode码置当前字符(搜索框输入)
+        if 已找到:
             self.刷新控件()
         else:
-            print("未找到Unicode码: " + Unicode值输入)
+            if (输入为字):
+                print("未找到字: " + 搜索框输入)
+            else:
+                print("未找到Unicode码: " + 搜索框输入)
 
     def 刷新图片显示(self, 图片显示, 字体名):
         图片 = self.按字体取图片(字体名)
