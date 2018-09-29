@@ -99,7 +99,8 @@ class Application(Frame):
         细节区.pack(side="right")
         self.Unicode编码值 = self.创建只读区(细节区, "Unicode编码", 当前字符[0])
 
-        self.笔顺值 = self.创建只读区(细节区, "笔顺", 当前字符[5])
+        self.中国大陆笔顺值 = self.创建只读区(细节区, "中国大陆笔顺", 当前字符[5])
+        self.中国台湾笔顺值 = self.创建只读区(细节区, "中国台湾笔顺", 当前字符[6])
 
         修改区 = Frame(细节区)
         修改区.pack()
@@ -171,7 +172,8 @@ class Application(Frame):
         self.编码86版值.set(当前字符[2])
         self.编码98版值.set(当前字符[3])
         self.编码06版值.set(当前字符[4])
-        self.笔顺值.set(当前字符[5])
+        self.中国大陆笔顺值.set(当前字符[5])
+        self.中国台湾笔顺值.set(当前字符[6])
 
 
 root = Tk()
