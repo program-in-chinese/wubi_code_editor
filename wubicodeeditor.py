@@ -18,9 +18,12 @@ class Application(Frame):
     def 修改当前条目(self):
         self.字符表.修改当前字符(self.编码86版值.get(),
                         self.编码98版值.get(), self.编码06版值.get())
+        源数据文件路径 = 常量.源数据路径 + 常量.源数据文件[self.字符表.取当前字符区间号()]
+        字符区间 = self.字符表.取当前字符区间()
+        csv文件处理.写数组到文件(self.字符表.取所有字符()[字符区间[0]:字符区间[1]], 源数据文件路径)
 
-    def 导出文件(self):
-        csv文件处理.写数组到文件(self.字符表.取所有字符(), 常量.修改后文件)
+    #def 导出文件(self):
+    #    csv文件处理.写数组到文件(self.字符表.取所有字符(), 常量.修改后文件)
 
     # TODO: 提示已到开头/末尾
     def 上一个字符(self):
@@ -127,8 +130,8 @@ class Application(Frame):
                            command=lambda: self.搜索Unicode(搜索Unicode值.get()))
         搜索Unicode.pack(side="right")
 
-        导出按钮 = Button(细节区, text="导出文件", command=self.导出文件)
-        导出按钮.pack()
+        #导出按钮 = Button(细节区, text="导出文件", command=self.导出文件)
+        #导出按钮.pack()
 
     def 搜索Unicode(self, Unicode值输入):
         if self.字符表.按Unicode码置当前字符(Unicode值输入):
@@ -154,6 +157,7 @@ class Application(Frame):
         for 字体 in 常量.图片路径.keys():
             self.刷新图片显示(self.按字体取图片显示[字体], 字体)
 
+        # TODO: 界面改进: 只读部分如果为空, 显示'无', 而不是空白
         self.Unicode编码值.set(当前字符[0])
         self.编码86版值.set(当前字符[2])
         self.编码98版值.set(当前字符[3])
