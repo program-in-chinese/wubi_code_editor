@@ -1,10 +1,33 @@
 class 字符表:
     当前字符序号 = 0
     字符列表 = []
+    字符序号区间 = []
 
     def 添加所有字符(self, 子字符列表):
         self.字符列表.extend(子字符列表)
+        self.字符序号区间.append(len(self.字符列表))
+        print(self.字符序号区间)
 
+    def 取当前字符区间号(self):
+        区间号 = 0
+        for 末字符序号 in self.字符序号区间:
+            if self.当前字符序号 < 末字符序号:
+                break
+            else:
+                区间号 += 1
+        return 区间号
+
+    def 取当前字符区间(self):
+        开始序号 = 0
+        结束序号 = 0
+        for 末字符序号 in self.字符序号区间:
+            if self.当前字符序号 < 末字符序号:
+                结束序号 = 末字符序号
+                break
+            else:
+                开始序号 = 末字符序号
+        return (开始序号, 结束序号)
+        
     def 取当前字符(self):
         # TODO: 判断序号范围
         return self.字符列表[self.当前字符序号]

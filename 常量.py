@@ -1,8 +1,18 @@
 from collections import OrderedDict
 
 源数据路径 = "UnicodeCJK-Wubi/"
-源数据文件 = ["CJK-A.txt", "CJK-B.txt", "CJK-C.txt",
-         "CJK-D.txt", "CJK-E.txt", "CJK-F.txt", "CJK.txt"]
+
+# https://github.com/CNMan/UnicodeCJK-WuBi/pull/2#issuecomment-424330083
+# 4E00..9FFF	CJK
+# 3400..4DBF	CJK-A
+# 20000..2A6DF	CJK-B
+# 2A700..2B73F	CJK-C
+# 2B740..2B81F	CJK-D
+# 2B820..2CEAF	CJK-E
+# 2CEB0..2EBEF	CJK-F
+# 按码大小范围排序
+源数据文件 = ["CJK-A.txt", "CJK.txt", "CJK-B.txt", "CJK-C.txt",
+         "CJK-D.txt", "CJK-E.txt", "CJK-F.txt"]
 # 暂时只指出导出到一个文件
 修改后文件 = "CJK-所有.txt"
 
