@@ -1,3 +1,4 @@
+import tkinter
 from collections import OrderedDict
 
 源数据路径 = "UnicodeCJK-WuBi/"
@@ -49,7 +50,7 @@ from collections import OrderedDict
     ("中国台港澳", [字体名_细明体, 字体名_细明体_HKSCS, 字体名_方正楷体T]),
     ("日本", [字体名_花园明朝])])
 
-# TODO: 判断tkinter版本, 如<8.6则用.gif
-图片扩展名 = ".png"
+# https://stackoverflow.com/questions/27599311/tkinter-photoimage-doesnt-not-support-png-image/34995365#34995365
+图片扩展名 = ".gif" if tkinter.TkVersion < 8.6 else ".png"
 
 无 = "无"
