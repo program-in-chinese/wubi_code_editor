@@ -22,9 +22,6 @@ class Application(Frame):
         字符区间 = self.字符表.取当前字符区间()
         csv文件处理.写数组到文件(self.字符表.取所有字符()[字符区间[0]:字符区间[1]], 源数据文件路径)
 
-    #def 导出文件(self):
-    #    csv文件处理.写数组到文件(self.字符表.取所有字符(), 常量.修改后文件)
-
     # TODO: 提示已到开头/末尾
     def 上一个字符(self):
         self.字符表.取上一个字符()
@@ -98,7 +95,7 @@ class Application(Frame):
         细节区 = Frame(self)
         细节区.pack(side="right")
         self.Unicode编码值 = self.创建只读区(细节区, "Unicode编码", 当前字符[0])
-
+        self.Unicode编码区 = self.创建只读区(细节区, "Unicode编码区", 常量.源数据文件[self.字符表.取当前字符区间号()])
         self.中国大陆笔顺值 = self.创建只读区(细节区, "中国大陆笔顺", 当前字符[5])
         self.中国台湾笔顺值 = self.创建只读区(细节区, "中国台湾笔顺", 当前字符[6])
 
@@ -130,9 +127,6 @@ class Application(Frame):
         搜索 = Button(搜索区, text="按Unicode或字搜索",
                            command=lambda: self.按Unicode或字搜索(搜索值.get()))
         搜索.pack(side="right")
-
-        #导出按钮 = Button(细节区, text="导出文件", command=self.导出文件)
-        #导出按钮.pack()
 
     def 按Unicode或字搜索(self, 搜索框输入):
         已找到 = False
@@ -172,6 +166,7 @@ class Application(Frame):
             self.刷新图片显示(self.按字体取图片显示[字体], 字体)
 
         self.Unicode编码值.set(self.显示只读项(当前字符[0]))
+        self.Unicode编码区.set(常量.源数据文件[self.字符表.取当前字符区间号()])
         self.编码86版值.set(当前字符[2])
         self.编码98版值.set(当前字符[3])
         self.编码06版值.set(当前字符[4])
