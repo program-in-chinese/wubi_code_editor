@@ -18,6 +18,29 @@ class test_字符表(unittest.TestCase):
     def test_1_取当前字符(self):
         self.assertEqual(self.字符表.取当前字符(), 字符1)
 
+    def test_2_取当前字符区间号(self):
+        self.assertEqual(self.字符表.取当前字符区间号(), 0)
+        self.assertEqual(self.字符表.取当前字符区间(), (0, 1))
+
+    def test_3_取下一个字符(self):
+        self.字符表.取下一个字符()
+        self.assertEqual(self.字符表.取当前字符(), 字符2)
+
+    def test_4_取当前字符区间号(self):
+        self.assertEqual(self.字符表.取当前字符区间号(), 1)
+        self.assertEqual(self.字符表.取当前字符区间(), (1, 2))
+
+    def test_5_取下一个字符失败(self):
+        self.字符表.取下一个字符()
+        self.assertEqual(self.字符表.取当前字符(), 字符2)
+
+    def test_6_取上一个字符(self):
+        self.字符表.取上一个字符()
+        self.assertEqual(self.字符表.取当前字符(), 字符1)
+
+    def test_7_取上一个字符失败(self):
+        self.字符表.取上一个字符()
+        self.assertEqual(self.字符表.取当前字符(), 字符1)
 
 if __name__ == '__main__':
     unittest.main()

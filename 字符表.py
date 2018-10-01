@@ -1,7 +1,9 @@
 class 字符表:
-    当前字符序号 = 0
-    字符列表 = []
-    字符序号区间 = []
+
+    def __init__(self):
+        self.当前字符序号 = 0
+        self.字符列表 = []
+        self.字符序号区间 = []
 
     def 添加所有字符(self, 子字符列表):
         self.字符列表.extend(子字符列表)
@@ -38,7 +40,7 @@ class 字符表:
         print("字符序号: " + str(self.当前字符序号))
 
     def 取下一个字符(self):
-        if (self.当前字符序号 < len(self.字符列表)):
+        if (self.当前字符序号 < len(self.字符列表) - 1):
             self.当前字符序号 += 1
         print("字符序号: " + str(self.当前字符序号))
 
