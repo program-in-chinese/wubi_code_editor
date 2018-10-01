@@ -5,7 +5,7 @@ import 字符表
 字符2 = ['2222', '二', 'b', 'c', 'd', 2, 2]
 
 
-class test_字符表(unittest.TestCase):
+class test字符表(unittest.TestCase):
 
     字符表 = 字符表.字符表()
 
