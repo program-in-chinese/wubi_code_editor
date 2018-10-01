@@ -160,6 +160,10 @@ class Application(Frame):
         except:
             return PhotoImage(file=常量.无字体图片)
 
+    # 只读部分如果为空, 显示'无', 而不是空白
+    def 显示只读项(self, 值):
+        return 常量.无 if not 值 else 值
+
     def 刷新控件(self):
         当前字符 = self.字符表.取当前字符()
         print("当前字符: " + str(当前字符))
@@ -167,13 +171,12 @@ class Application(Frame):
         for 字体 in 常量.图片路径.keys():
             self.刷新图片显示(self.按字体取图片显示[字体], 字体)
 
-        # TODO: 界面改进: 只读部分如果为空, 显示'无', 而不是空白
-        self.Unicode编码值.set(当前字符[0])
+        self.Unicode编码值.set(self.显示只读项(当前字符[0]))
         self.编码86版值.set(当前字符[2])
         self.编码98版值.set(当前字符[3])
         self.编码06版值.set(当前字符[4])
-        self.中国大陆笔顺值.set(当前字符[5])
-        self.中国台湾笔顺值.set(当前字符[6])
+        self.中国大陆笔顺值.set(self.显示只读项(当前字符[5]))
+        self.中国台湾笔顺值.set(self.显示只读项(当前字符[6]))
 
 
 root = Tk()
