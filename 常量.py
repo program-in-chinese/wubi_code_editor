@@ -25,10 +25,11 @@ from collections import OrderedDict
 字体名_汉仪仿宋 = "汉仪仿宋"
 字体名_方正楷体S = "方正楷体S"
 
-字体名_细明体 = "细明体"
-字体名_细明体_HKSCS = "细明体_HKSCS"
+字体名_細明體 = "細明體"
+字体名_細明體_HKSCS = "細明體_HKSCS"
 字体名_方正楷体T = "方正楷体T"
 字体名_全字庫正宋體 = "全字庫正宋體"
+字体名_全字庫正楷體 = "全字庫正楷體"
 
 字体名_花园明朝 = "花园明朝"
 
@@ -38,10 +39,11 @@ from collections import OrderedDict
     字体名_汉仪字典宋: "HYZiDianSong/",
     字体名_汉仪仿宋: "HYFangSong/",
     字体名_方正楷体S: "FZKaiS/",
-    字体名_细明体: "MingLiU/",
-    字体名_细明体_HKSCS: "MingLiU_HKSCS/",
+    字体名_細明體: "MingLiU/",
+    字体名_細明體_HKSCS: "MingLiU_HKSCS/",
     字体名_方正楷体T: "FZKaiT/",
     字体名_全字庫正宋體: "TW-Sung/",
+    字体名_全字庫正楷體: "TW-Kai/",
     字体名_花园明朝: "HanaMin/"
 }
 
@@ -49,7 +51,7 @@ from collections import OrderedDict
 
 按地区名取字体列表 = OrderedDict([
     ("中国大陆", [字体名_中易宋体, 字体名_中华书局宋体, 字体名_汉仪字典宋, 字体名_汉仪仿宋, 字体名_方正楷体S]),
-    ("中国台港澳", [字体名_细明体, 字体名_细明体_HKSCS, 字体名_方正楷体T, 字体名_全字庫正宋體]),
+    ("中国台港澳", [字体名_細明體, 字体名_細明體_HKSCS, 字体名_方正楷体T, 字体名_全字庫正宋體, 字体名_全字庫正楷體]),
     ("日本", [字体名_花园明朝])])
 
 # https://stackoverflow.com/questions/27599311/tkinter-photoimage-doesnt-not-support-png-image/34995365#34995365
