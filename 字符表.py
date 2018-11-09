@@ -53,6 +53,7 @@ class 字符表:
 
     # 如找到, 返回True; 否则返回False
     # 测试用: 3400 - A第一个, 20000 -B第一个
+    # Unicode编码不论是否输入U+前辍均可查询:如3400和U+3400
     # 支持大小写
     # TODO: 避免线性查找
     def 按Unicode码置当前字符(self, unicode码):
