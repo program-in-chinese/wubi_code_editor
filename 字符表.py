@@ -60,7 +60,7 @@ class 字符表:
         字符序号 = -1
         for 字符 in self.字符列表:
             字符序号 += 1
-            if (Unicode值输入 == 字符[0]):
+            if (Unicode值输入 == 字符[0]) or ('U+' + Unicode值输入 == 字符[0]):
                 self.置当前字符序号(字符序号)
                 return True
         return False
