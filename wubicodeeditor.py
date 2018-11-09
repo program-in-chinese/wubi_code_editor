@@ -150,7 +150,7 @@ class Application(Frame):
 
     def 按字体取图片(self, 字体名):
         try:
-            return PhotoImage(file=常量.图片主目录 + 常量.图片路径[字体名] + self.组成图片子路径(self.字符表.取当前字符()[0]))
+            return PhotoImage(file=常量.图片主目录 + 常量.图片路径[字体名] + self.组成图片子路径(self.字符表.取当前字符()[0][2:]))
         except:
             return PhotoImage(file=常量.无字体图片)
 
