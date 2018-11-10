@@ -31,7 +31,7 @@ from collections import OrderedDict
 字体名_全字庫正宋體 = "全字庫正宋體"
 字体名_全字庫正楷體 = "全字庫正楷體"
 
-字体名_花园明朝 = "花园明朝"
+字体名_花園明朝 = "花園明朝"
 
 图片路径 = {
     字体名_中易宋体: "SimSun/",
@@ -44,7 +44,7 @@ from collections import OrderedDict
     字体名_方正楷体T: "FZKaiT/",
     字体名_全字庫正宋體: "TW-Sung/",
     字体名_全字庫正楷體: "TW-Kai/",
-    字体名_花园明朝: "HanaMin/"
+    字体名_花園明朝: "HanaMin/"
 }
 
 无字体图片 = "images/NoneFontGlyph.gif"
@@ -52,7 +52,7 @@ from collections import OrderedDict
 按地区名取字体列表 = OrderedDict([
     ("中国大陆", [字体名_中易宋体, 字体名_中华书局宋体, 字体名_汉仪字典宋, 字体名_汉仪仿宋, 字体名_方正楷体S]),
     ("中国台港澳", [字体名_細明體, 字体名_細明體_HKSCS, 字体名_方正楷体T, 字体名_全字庫正宋體, 字体名_全字庫正楷體]),
-    ("日本", [字体名_花园明朝])])
+    ("日本", [字体名_花園明朝])])
 
 # https://stackoverflow.com/questions/27599311/tkinter-photoimage-doesnt-not-support-png-image/34995365#34995365
 图片扩展名 = ".gif" if tkinter.TkVersion < 8.6 else ".png"
