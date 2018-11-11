@@ -95,9 +95,9 @@ class Application(Frame):
         细节区 = Frame(self)
         细节区.pack(side="right")
         self.Unicode编码值 = self.创建只读区(细节区, "Unicode编码", 当前字符[0])
-        self.Unicode编码区 = self.创建只读区(细节区, "Unicode编码区", 常量.源数据文件[self.字符表.取当前字符区间号()])
-        self.中国大陆笔顺值 = self.创建只读区(细节区, "中国大陆笔顺", 当前字符[5])
-        self.中国台湾笔顺值 = self.创建只读区(细节区, "中国台湾笔顺", 当前字符[6])
+        self.Unicode编码区 = self.创建只读区(细节区, "Unicode编码区", 常量.源数据文件[self.字符表.取当前字符区间号()][:-4])
+        self.中国大陆笔顺值 = self.创建只读区(细节区, "中国大陆笔顺", "共" + str(len(当前字符[5])) + "画:" + 当前字符[5])
+        self.中国台湾笔顺值 = self.创建只读区(细节区, "中国台湾笔顺", "共" + str(len(当前字符[6])) + "画:" + 当前字符[6])
 
         修改区 = Frame(细节区)
         修改区.pack()
@@ -166,12 +166,12 @@ class Application(Frame):
             self.刷新图片显示(self.按字体取图片显示[字体], 字体)
 
         self.Unicode编码值.set(self.显示只读项(当前字符[0]))
-        self.Unicode编码区.set(常量.源数据文件[self.字符表.取当前字符区间号()])
+        self.Unicode编码区.set(常量.源数据文件[self.字符表.取当前字符区间号()][:-4])
         self.编码86版值.set(当前字符[2])
         self.编码98版值.set(当前字符[3])
         self.编码06版值.set(当前字符[4])
-        self.中国大陆笔顺值.set(self.显示只读项(当前字符[5]))
-        self.中国台湾笔顺值.set(self.显示只读项(当前字符[6]))
+        self.中国大陆笔顺值.set(self.显示只读项("共" + str(len(当前字符[5])) + "画:" + 当前字符[5]))
+        self.中国台湾笔顺值.set(self.显示只读项("共" + str(len(当前字符[6])) + "画:" + 当前字符[6]))
 
 
 root = Tk()
