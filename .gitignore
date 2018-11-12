@@ -139,6 +139,7 @@ pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/python,visualstudiocode
 
+Unicode
 UnicodeCJK-WuBi
 UnicodeCJK-FontGlyphs
 
