@@ -58,3 +58,8 @@ from collections import OrderedDict
 图片扩展名 = ".gif" if tkinter.TkVersion < 8.6 else ".png"
 
 无 = "无"
+
+IRG数据路径 = "Unicode/Unihan/Unihan_IRGSources.txt"
+IRG键值 = ["G", "H", "J", "KP", "K", "M", "T", "U", "V"]
+IRG值前缀 = "kIRG_"
+IRG值后缀 = "Source"

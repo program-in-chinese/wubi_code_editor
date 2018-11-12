@@ -84,6 +84,8 @@ class Application(Frame):
         for 文件名 in 常量.源数据文件:
             self.字符表.添加所有字符(csv文件处理.读文件到数组(常量.源数据路径 + 文件名))
 
+        self.IRG表 = 功能.数组前两列转换为表(csv文件处理.读IRG文件到数组(常量.IRG数据路径))
+
         当前字符 = self.字符表.取当前字符()
 
         图片区 = Frame(self)
@@ -99,6 +101,7 @@ class Application(Frame):
         self.中国大陆笔顺值 = self.创建只读区(细节区, "中国大陆笔顺", "共" + str(len(当前字符[5])) + "画:" + 当前字符[5])
         self.中国台湾笔顺值 = self.创建只读区(细节区, "中国台湾笔顺", "共" + str(len(当前字符[6])) + "画:" + 当前字符[6])
 
+        self.IRGSource值 = self.创建只读区(细节区, "IRGSource", self.构建IRG显示(当前字符[0]))
         修改区 = Frame(细节区)
         修改区.pack()
         可改编码区 = Frame(修改区)
@@ -127,6 +130,17 @@ class Application(Frame):
         搜索 = Button(搜索区, text="按Unicode或字搜索",
                            command=lambda: self.按Unicode或字搜索(搜索值.get()))
         搜索.pack(side="right")
+
+    def 构建IRG显示(self, Unicode码):
+        IRG显示 = ""
+        for 某键值 in 常量.IRG键值:
+            状态 = ""
+            if (常量.IRG值前缀 + 某键值 + 常量.IRG值后缀) in self.IRG表["U+" + Unicode码]:
+                状态 = "√"
+            else:
+                状态 = "×"
+            IRG显示 += 某键值 + 状态 + "  "
+        return IRG显示
 
     def 按Unicode或字搜索(self, 搜索框输入):
         已找到 = False
@@ -172,7 +186,7 @@ class Application(Frame):
         self.编码06版值.set(当前字符[4])
         self.中国大陆笔顺值.set(self.显示只读项("共" + str(len(当前字符[5])) + "画:" + 当前字符[5]))
         self.中国台湾笔顺值.set(self.显示只读项("共" + str(len(当前字符[6])) + "画:" + 当前字符[6]))
-
+        self.IRGSource值.set(self.构建IRG显示(当前字符[0]))
 
 root = Tk()
 app = Application(master=root)
