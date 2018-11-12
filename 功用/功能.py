@@ -26,3 +26,21 @@ class 功能:
         补0数 = 6 - len(Unicode码)
         大写Unicode码 = "0" * 补0数 + Unicode码.upper()
         return "Plane" + Plane值 + "/U_" + 大写Unicode码
+
+    # U+3400	kIRG_GSource	GKX-0078.01
+    # U+3400	kIRG_JSource	JA-2121
+    # U+3400	kIRG_TSource	T6-222C
+    # U+3400	kRSUnicode	1.4
+    # 转换为
+    # "U+3400"->["kIRG_GSource", "kIRG_JSource", "kIRG_TSource", "kRSUnicode"]
+    @staticmethod
+    def 数组前两列转换为表(数组):
+        表 = {}
+        for 行 in 数组:
+            if len(行) == 0:
+                break
+            if 行[0] not in 表:
+                表[行[0]] = [行[1]]
+            else:
+                表[行[0]].append(行[1])
+        return 表
