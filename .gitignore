@@ -144,3 +144,6 @@ UnicodeCJK-FontGlyphs
 
 # 暂时不列入版本控制
 CJK-所有.txt
+
+# Unicode资源: https://github.com/CNMan/Unicode.git
+Unicode
