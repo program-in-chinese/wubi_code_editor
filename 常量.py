@@ -12,8 +12,7 @@ from collections import OrderedDict
 # 2B820..2CEAF	CJK-E
 # 2CEB0..2EBEF	CJK-F
 # 按码大小范围排序
-源数据文件 = ["CJK-A.txt", "CJK.txt", "CJKCompatibilityIdeographs.txt", "CJK-B.txt", "CJK-C.txt",
-         "CJK-D.txt", "CJK-E.txt", "CJK-F.txt", "CJKCompatibilityIdeographsSupplement.txt", "CJK-G.txt"]
+源数据文件 = ["CJKRadicalsSupplement.txt", "KangxiRadicals.txt", "CJKStrokes.txt", "CJK-A.txt", "CJK.txt", "CJKCompatibilityIdeographs.txt", "CJK-B.txt", "CJK-C.txt", "CJK-D.txt", "CJK-E.txt", "CJK-F.txt", "CJKCompatibilityIdeographsSupplement.txt", "CJK-G.txt"]
 # 暂时只指出导出到一个文件
 修改后文件 = "CJK-所有.txt"
 
