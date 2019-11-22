@@ -12,8 +12,8 @@ from collections import OrderedDict
 # 2B820..2CEAF	CJK-E
 # 2CEB0..2EBEF	CJK-F
 # 按码大小范围排序
-源数据文件 = ["CJK-A.txt", "CJK.txt", "CJK-B.txt", "CJK-C.txt",
-         "CJK-D.txt", "CJK-E.txt", "CJK-F.txt"]
+源数据文件 = ["CJK-A.txt", "CJK.txt", "CJKCompatibilityIdeographs.txt", "CJK-B.txt", "CJK-C.txt",
+         "CJK-D.txt", "CJK-E.txt", "CJK-F.txt", "CJKCompatibilityIdeographsSupplement.txt", "CJK-G.txt"]
 # 暂时只指出导出到一个文件
 修改后文件 = "CJK-所有.txt"
 
@@ -23,7 +23,9 @@ from collections import OrderedDict
 字体名_中华书局宋体 = "中华书局宋体"
 字体名_汉仪字典宋 = "汉仪字典宋"
 字体名_汉仪仿宋 = "汉仪仿宋"
+字体名_方正宋体S = "方正宋体S"
 字体名_方正楷体S = "方正楷体S"
+字体名_方正新楷体S = "方正新楷体S"
 字体名_BabelStoneHan = "BabelStoneHan"
 
 字体名_細明體 = "細明體"
@@ -39,7 +41,9 @@ from collections import OrderedDict
     字体名_中华书局宋体: "ZhongHuaSong/",
     字体名_汉仪字典宋: "HYZiDianSong/",
     字体名_汉仪仿宋: "HYFangSong/",
+    字体名_方正宋体S: "FZSongS/",
     字体名_方正楷体S: "FZKaiS/",
+    字体名_方正新楷体S: "FZNewKaiS/",
     字体名_BabelStoneHan: "BabelStoneHan/",
     字体名_細明體: "MingLiU/",
     字体名_細明體_HKSCS: "MingLiU_HKSCS/",
@@ -52,7 +56,7 @@ from collections import OrderedDict
 无字体图片 = "images/NoneFontGlyph.gif"
 
 按地区名取字体列表 = OrderedDict([
-    ("中国大陆", [字体名_中易宋体, 字体名_中华书局宋体, 字体名_汉仪字典宋, 字体名_汉仪仿宋, 字体名_方正楷体S, 字体名_BabelStoneHan]),
+    ("中国大陆", [字体名_中易宋体, 字体名_中华书局宋体, 字体名_汉仪字典宋, 字体名_汉仪仿宋, 字体名_方正宋体S, 字体名_方正楷体S, 字体名_方正新楷体S, 字体名_BabelStoneHan]),
     ("中国台港澳", [字体名_細明體, 字体名_細明體_HKSCS, 字体名_方正楷体T, 字体名_全字庫正宋體, 字体名_全字庫正楷體]),
     ("日本", [字体名_花園明朝])])
 
@@ -62,6 +66,6 @@ from collections import OrderedDict
 无 = "无"
 
 IRG数据路径 = "Unicode/Unihan/Unihan_IRGSources.txt"
-IRG键值 = ["G", "H", "J", "KP", "K", "M", "T", "U", "V"]
+IRG键值 = ["G", "H", "J", "KP", "K", "M", "S", "T", "UK", "U", "V"]
 IRG值前缀 = "kIRG_"
 IRG值后缀 = "Source"

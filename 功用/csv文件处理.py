@@ -20,7 +20,7 @@ class csv文件处理:
             所有行 = []
             行序号 = 0
             for 行 in 源数据读取器:
-                if 行序号 < 27:
+                if 行序号 < 31:
                     行序号 += 1
                     continue
                 所有行.append(行)
