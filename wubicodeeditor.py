@@ -135,7 +135,7 @@ class Application(Frame):
         IRG显示 = ""
         for 某键值 in 常量.IRG键值:
             状态 = ""
-            if (常量.IRG值前缀 + 某键值 + 常量.IRG值后缀) in self.IRG表[Unicode码]:
+            if (Unicode码 in self.IRG表) and ((常量.IRG值前缀 + 某键值 + 常量.IRG值后缀) in self.IRG表[Unicode码]):
                 状态 = "√"
             else:
                 状态 = "×"
