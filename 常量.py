@@ -4,26 +4,41 @@ from collections import OrderedDict
 源数据路径 = "UnicodeCJK-WuBi/"
 
 # https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt
-# 2E80..2EFF; CJK Radicals Supplement
-# 2F00..2FDF; Kangxi Radicals
 # 3000..303F; CJK Symbols and Punctuation
-# 31C0..31EF; CJK Strokes
 # 3200..32FF; Enclosed CJK Letters and Months
 # 3300..33FF; CJK Compatibility
-# 3400..4DBF; CJK Unified Ideographs Extension A
-# 4E00..9FFF; CJK Unified Ideographs
-# F900..FAFF; CJK Compatibility Ideographs
 # FE30..FE4F; CJK Compatibility Forms
-# 20000..2A6DF; CJK Unified Ideographs Extension B
-# 2A700..2B73F; CJK Unified Ideographs Extension C
-# 2B740..2B81F; CJK Unified Ideographs Extension D
-# 2B820..2CEAF; CJK Unified Ideographs Extension E
-# 2CEB0..2EBEF; CJK Unified Ideographs Extension F
-# 2F800..2FA1F; CJK Compatibility Ideographs Supplement
-# 30000..3134F; CJK Unified Ideographs Extension G
-# 31350..323AF; CJK Unified Ideographs Extension H
 # 按码大小范围排序
-源数据文件 = ["CJKRadicalsSupplement.txt", "KangxiRadicals.txt", "CJKStrokes.txt", "CJK-A.txt", "CJK.txt", "CJKCompatibilityIdeographs.txt", "CJK-B.txt", "CJK-C.txt", "CJK-D.txt", "CJK-E.txt", "CJK-F.txt", "CJKCompatibilityIdeographsSupplement.txt", "CJK-G.txt", "CJK-H.txt"]
+源数据文件 = [
+              # 2E80..2EFF; CJK Radicals Supplement
+              "CJKRadicalsSupplement.txt",
+              # 2F00..2FDF; Kangxi Radicals
+               "KangxiRadicals.txt",
+              # 31C0..31EF; CJK Strokes
+               "CJKStrokes.txt",
+              # 3400..4DBF; CJK Unified Ideographs Extension A
+               "CJK-A.txt",
+              # 4E00..9FFF; CJK Unified Ideographs
+               "CJK.txt",
+              # F900..FAFF; CJK Compatibility Ideographs
+               "CJKCompatibilityIdeographs.txt",
+              # 20000..2A6DF; CJK Unified Ideographs Extension B
+               "CJK-B.txt",
+              # 2A700..2B73F; CJK Unified Ideographs Extension C
+               "CJK-C.txt",
+              # 2B740..2B81F; CJK Unified Ideographs Extension D
+               "CJK-D.txt",
+              # 2B820..2CEAF; CJK Unified Ideographs Extension E
+               "CJK-E.txt",
+              # 2CEB0..2EBEF; CJK Unified Ideographs Extension F
+               "CJK-F.txt",
+              # 2F800..2FA1F; CJK Compatibility Ideographs Supplement
+               "CJKCompatibilityIdeographsSupplement.txt",
+              # 30000..3134F; CJK Unified Ideographs Extension G
+               "CJK-G.txt",
+              # 31350..323AF; CJK Unified Ideographs Extension H
+               "CJK-H.txt"
+              ]
 # 暂时只指出导出到一个文件
 修改后文件 = "CJK-所有.txt"
 
