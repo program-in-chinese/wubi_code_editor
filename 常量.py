@@ -95,6 +95,30 @@ from collections import OrderedDict
 无 = "无"
 
 IRG数据路径 = "Unicode/Unihan/Unihan_IRGSources.txt"
-IRG键值 = ["G", "H", "J", "KP", "K", "M", "S", "T", "UK", "U", "V"]
+IRG键值 = [
+    # https://www.unicode.org/reports/tr38/
+    # kIRG_GSource (China and Singapore)
+    "G",
+    # kIRG_HSource (Hong Kong SAR)
+    "H",
+    # kIRG_JSource (Japan)
+    "J",
+    # kIRG_KPSource (North Korea)
+    "KP",
+    # kIRG_KSource (South Korea)
+    "K",
+    # kIRG_MSource (Macao SAR)
+    "M",
+    # kIRG_SSource (SAT Daizōkyō Text Database Committee)
+    "S",
+    # kIRG_TSource (TCA)
+    "T",
+    # kIRG_UKSource (UK)
+    "UK",
+    # kIRG_USource (UTC)
+    "U",
+    # kIRG_VSource (Vietnam)
+    "V"
+]
 IRG值前缀 = "kIRG_"
 IRG值后缀 = "Source"
